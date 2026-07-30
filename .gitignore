@@ -1,0 +1,10 @@
+# .gitignore — 排除本地数据中间文件与调试文件
+*.txt
+*.py
+kdocs_data.json
+daily_data.json
+_col9.json
+*.md
+!README.md
+.workbuddy/
+node_modules/
