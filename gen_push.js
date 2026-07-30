@@ -2,7 +2,7 @@ const fs = require('fs');
 const BASE = 'C:\\Users\\WinTeringplus\\WorkBuddy\\2026-07-06-17-20-54\\dashboard';
 const PATH = BASE + '\\daily_data.json';
 const WEBHOOK = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=150c0f64-fecc-4ace-b8f2-fd55cdf04328";
-const DASHBOARD = "https://0f66c9738685407386fe6f58ceec0354.app.codebuddy.work";
+const DASHBOARD = "https://dashboard.xnkq.net";
 const DEPT_TARGET = {"洁牙组":800,"全科部":400,"儿科":100,"正畸科":200,"客户部-许燕青":200};
 const MONTH_TARGET = Object.values(DEPT_TARGET).reduce((a,b)=>a+b,0);
 
