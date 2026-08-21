@@ -17,6 +17,9 @@ function parseDate(s) {
 }
 
 const byDay = {}, byDayChan = {}, byDayDept = {}, byDayPerson = {}, byMonth = {}, topPersons = {};
+// 人员/部门改名映射（持久化：每日刷新从 kdocs 重新聚合时，旧名也会被统一改为新名）
+const REMAP = { '客户部-许燕青': '客户部-李坤' };
+const norm = s => REMAP[s] || s;
 let skipped = 0, used = 0;
 for (const r of records) {
   let d = parseDate(r.reportDate) || parseDate(r.submitTime);
@@ -28,9 +31,9 @@ for (const r of records) {
   byMonth[ym] = (byMonth[ym] || 0) + 1;
   const ch = r.channel || '未知';
   (byDayChan[d] = byDayChan[d] || {})[ch] = ((byDayChan[d][ch] || 0) + 1);
-  const dp = r.dept || '未知';
+  const dp = norm(r.dept || '未知');
   (byDayDept[d] = byDayDept[d] || {})[dp] = ((byDayDept[d][dp] || 0) + 1);
-  const pk = (r.name || '未知') + '||' + (r.dept || '未知');
+  const pk = norm(r.name || '未知') + '||' + norm(r.dept || '未知');
   (byDayPerson[d] = byDayPerson[d] || {})[pk] = ((byDayPerson[d][pk] || 0) + 1);
   (topPersons[d] = topPersons[d] || {})[pk] = ((topPersons[d][pk] || 0) + 1);
 }
